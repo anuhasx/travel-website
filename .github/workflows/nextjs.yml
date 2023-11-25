@@ -1,0 +1,34 @@
+name: Building Next.js site
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      - name: Set package manager
+        id: set-package-manager
+        run: |
+          echo "manager=npm" >> $GITHUB_OUTPUT
+          echo "command=ci" >> $GITHUB_OUTPUT
+          echo "runner=npx --no-install" >> $GITHUB_OUTPUT
+          exit 0
+      
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+          cache: ${{ steps.set-package-manager.outputs.manager }}
+      
+      - name: Install dependencies
+        run: ${{ steps.set-package-manager.outputs.manager }} ${{ steps.set-package-manager.outputs.command }}
+      
+      - name: Build with Next.js
+        run: ${{ steps.set-package-manager.outputs.runner }} next build
