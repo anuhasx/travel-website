@@ -6,9 +6,54 @@ const inter = Inter({ subsets: ['latin'] })
 export default function Home() {
   return (
     <main
-      className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
+      //  className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
     >
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
+    <div
+      className="background-image"
+      style={{
+        backgroundImage: 'url("/bg_2.jepg")',
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+        height: '100vh', // Set height as needed
+      }}
+    >
+
+      <div className="flex h-screen">
+        <div className="w-1/2 ">
+            <h1 className='text1 text-6xl p-10 pt-24 font-extrabold'>
+            Welcome to the Worlds' Cutest <br /> <span className='text text-9xl'>Island</span> 
+            </h1> 
+              <p className='p-10 pt-4'>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur explicabo incidunt quos sed ratione ipsum voluptatibus sunt tempore eaque. Numquam nihil eligendi, necessitatibus minus neque, exercitationem nemo maiores iusto ducimus ad blanditiis facere illum ex enim? Dolorem a odio voluptas praesentium voluptatibus possimus, ut, minima culpa facere nemo modi aliquid?
+              </p>
+              <div className='for_button p-10 pt-4 space-x-4'>
+                <button className='button bg-orange-500 rounded-3xl px-4 py-2'>Log In</button>
+                <button className='button bg-green-700 rounded-3xl px-4 py-2'>Sign In</button>
+              </div>
+        </div>
+      < div className="w-1/2">
+          
+          <div className=' right rounded grid grid-cols-4 h-2/3 p-10 pt-24 gap-2 '>
+              <div className='1 rounded-lg col-span-1 bg-zinc-900 '>hey</div>
+              <div className='2 rounded-lg col-span-2 bg-red-700'>hey</div>
+              <div className='3 rounded-lg  bg-zinc-800'>hey</div>
+              <div className='4 rounded-lg col-span-2 bg-orange-500'>hey</div>
+              <div className='5 rounded-lg row-span-2 bg-green-300'>hey</div>
+              <div className='6 rounded-lg  bg-pink-600'>hey</div>
+            
+              <div className='8 rounded-lg  bg-zinc-800'>hey</div>
+              <div className='8 rounded-lg  bg-blue-800'>hey</div>
+              <div className='8 rounded-lg  bg-red-500'>hey</div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+
+
+
+      {/* <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
         <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
           Get started by editing&nbsp;
           <code className="font-mono font-bold">pages/index.tsx</code>
@@ -43,7 +88,7 @@ export default function Home() {
           priority
         />
       </div>
-
+{/*  
       <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
         <a
           href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
@@ -112,7 +157,7 @@ export default function Home() {
             Instantly deploy your Next.js site to a shareable URL with Vercel.
           </p>
         </a>
-      </div>
+      </div> */}
     </main>
   )
 }
