@@ -18,7 +18,7 @@ export default function Home() {
       className="background-image"
       style={{
         backgroundImage: 'url("/learnado_bg.jpeg")',
-        backgroundSize: 'cover',
+        backgroundSize: 'cover sm:fetch',
         backgroundRepeat: 'no-repeat',
         height: 'full', // Set height as needed
       }}
@@ -37,31 +37,27 @@ export default function Home() {
                 </nav>
             </div>
         </div>
-    </header>
+      </header>
       
-      <div className="flex h-screen">
-        <div className="w-1/2 ">
-          
-
-            <h1 className='text-black text-opacity-90 text-6xl p-10 pt-24 font-bold'>
-            Welcome to the Worlds' Cutest <br /> <span className='text text-9xl'>Island</span> 
-            </h1> 
-              <p className='p-10 text-black max-w font-extrabold'>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur explicabo incidunt quos sed ratione ipsum voluptatibus sunt tempore eaque. Numquam nihil eligendi, necessitatibus minus neque, exercitationem nemo maiores iusto ducimus ad blanditiis facere illum ex enim? Dolorem a odio voluptas praesentium voluptatibus possimus, ut, minima culpa facere nemo modi aliquid?
-              </p>
-              <div className='for_button p-10 pt-4 px-16 space-x-6'>
-                <button className='button bg-orange-500 rounded-3xl px-8 py-4'>Log In</button>
-                <button className='button bg-green-700 rounded-3xl px-8 py-4'>Sign In</button>
-              
-          </div>
-        </div>
-        <div className="w-1/2">
-          <div className=' content-center text-center justify-center pt-10'>
+      <div className="flex flex-col sm:flex-row">
+        <div className="w-full sm:w-1/2 p-4">
+          <h1 className="text-black text-opacity-90 text-4xl sm:text-6xl p-4 pt-24 font-bold">
+          Welcome to the Worlds' Cutest <br /> <span className="text text-5xl sm:text-9xl">Island</span>
+          </h1>
+        <p className="p-4 text-black max-w font-extrabold">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur explicabo incidunt quos sed ratione ipsum voluptatibus sunt tempore eaque. Numquam nihil eligendi, necessitatibus minus neque, exercitationem nemo maiores iusto ducimus ad blanditiis facere illum ex enim? Dolorem a odio voluptas praesentium voluptatibus possimus, ut, minima culpa facere nemo modi aliquid?
+        </p>
+      <div className="for_button p-4 pt-2 sm:pt-4 px-4 sm:px-16 space-y-2 sm:space-y-0 sm:space-x-6 flex flex-col sm:flex-row">
+          <button className="button bg-orange-500 rounded-3xl px-4 py-2 sm:px-8 sm:py-4">Log In</button>
+          <button className="button bg-green-700 rounded-3xl px-4 py-2 sm:px-8 sm:py-4">Sign In</button>
+      </div>
+      </div>
+      <div className="w-full sm:w-1/2 p-4">
+        <div className=" bg-slate-400 bg-opacity-30 content-center text-center justify-center pt-4">
           <ToggleComponent />
-          </div>
-
         </div>
       </div>
+    </div>
       <footer className=" text-white bg-slate-500 bg-opacity-50 justify-center">
       <div className="container mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
