@@ -29,7 +29,7 @@ body {
 .animated-gradient {
   background: linear-gradient(45deg, #34a036, #4a8c65, #7be1c6, #15a83f);
   background-size: 400% 400%;
-  animation: gradientAnimation 15s infinite;
+  animation: gradientAnimation 6s infinite;
 }
 
 @keyframes gradientAnimation {

@@ -39,7 +39,7 @@ export default function Home() {
         custom={index}
         whileHover={{scale:1.1 , transition:{duration:0.1}}}
       
-        className={`item rounded-2xl bg-green-200 flex items-center justify-center h-full text-xl font-bold p-10 shadow-sm
+        className={`item rounded-2xl bg-green-200 flex items-center justify-center h-full text-xl font-bold p-10 shadow-xl
          ${ index === 2 ? 'col-span-2 row-span-1' : '' }
          ${ index === 4 ? 'col-span-2 row-span-1' : '' }
          ${ index === 5 ? 'col-span-1 row-span-2' : '' }
