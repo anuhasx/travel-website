@@ -4,7 +4,10 @@ import React, { useState } from 'react';
 import Lottie from 'lottie-react';
 import animationData from '../public/elephant.json';
 import { motion, spring } from 'framer-motion';
-
+import Button from '@/public/components/Button';
+import { link } from 'fs';
+import { LinkProps } from 'next/link';
+import Link from 'next/link';
 
 
 const inter = Inter({ subsets: ['latin'] });
@@ -17,18 +20,18 @@ export default function Home() {
   };
 
   const gridData = [
-    { index:1 , text: 'Hey', colSpan: 1, rowSpan: 1 },
-    { index:2 ,text: 'Chat to Assist', colSpan: 2, rowSpan: 1 },
-    { index:3 ,text: 'Discover', colSpan: 1, rowSpan: 1 },
-    { index:4 ,text: 'To Stay', colSpan: 2, rowSpan: 1 },
-    { index:5 ,text: 'Pricing', colSpan: 1, rowSpan: 2 },
-    { index:6 ,text: 'Best Packages', colSpan: 1, rowSpan: 1 },
-    { index:7 ,text: 'Travelling', colSpan: 1, rowSpan: 1 },
-    { index:8 ,text: 'Free Guide', colSpan: 1, rowSpan: 1 },
-    { index:9 ,text: 'About Us', colSpan: 1, rowSpan: 1 },
+    { index:1 ,text: 'Hey', colSpan: 1, rowSpan: 1 , href: '/chat' },
+    { index:2 ,text: 'Chat to Assist', colSpan: 2, rowSpan: 1 , href: '/chat' },
+    { index:3 ,text: 'Discover', colSpan: 1, rowSpan: 1, href: '/chat' },
+    { index:4 ,text: 'To Stay', colSpan: 2, rowSpan: 1, href: '/chat'  },
+    { index:5 ,text: 'Pricing', colSpan: 1, rowSpan: 2, href: '/chat'  },
+    { index:6 ,text: 'Best Packages', colSpan: 1, rowSpan: 1, href: '/chat'  },
+    { index:7 ,text: 'Travelling', colSpan: 1, rowSpan: 1, href: '/chat'  },
+    { index:8 ,text: 'Free Guide', colSpan: 1, rowSpan: 1 , href: '/chat' },
+    { index:9 ,text: 'About Us', colSpan: 1, rowSpan: 1, href: '/chat'  },
   ];
 
-  const GridItem = ({ index , text, colSpan, rowSpan}: {index: number ; text: string; colSpan: number; rowSpan: number }) => {
+  const GridItem = ({ index , text, colSpan, rowSpan , href}: {index: number ; text: string; colSpan: number; rowSpan: number; href: string}) => {
     return (
       <motion.button
         key={index}
@@ -38,6 +41,8 @@ export default function Home() {
         viewport={{once:true}}
         custom={index}
         whileHover={{scale:1.1 , transition:{duration:0.1}}}
+        
+
       
         className={`item rounded-2xl bg-green-200 flex items-center justify-center h-full text-xl font-bold p-10 shadow-xl
          ${ index === 2 ? 'col-span-2 row-span-1' : '' }
@@ -48,7 +53,7 @@ export default function Home() {
          ${ index === 2 ? 'col-span-2 row-span-1' : '' }
         }`}
       >
-        {text}
+        <Link href={href}>{text}</Link>
       </motion.button>
     );
   };
