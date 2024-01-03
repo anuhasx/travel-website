@@ -1,117 +1,190 @@
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
 
-const inter = Inter({ subsets: ['latin'] })
+import { Inter } from 'next/font/google'
+import React, { useState } from 'react';
+import Lottie from 'lottie-react';
+import animationData from '../public/elephant.json';
+import { motion, spring } from 'framer-motion';
+import Button from '@/public/components/Button';
+import { link } from 'fs';
+import { LinkProps } from 'next/link';
+import Link from 'next/link';
+
+
+const inter = Inter({ subsets: ['latin'] });
 
 export default function Home() {
+  const [isFirstDivVisible, setFirstDivVisible] = useState(true);
+
+  const handleToggleClick = () => {
+    setFirstDivVisible(!isFirstDivVisible);
+  };
+
+  const gridData = [
+    { index:1 ,text: 'Hey', colSpan: 1, rowSpan: 1 , href: '/chat' },
+    { index:2 ,text: 'Chat to Assist', colSpan: 2, rowSpan: 1 , href: '/chat' },
+    { index:3 ,text: 'Discover', colSpan: 1, rowSpan: 1, href: '/chat' },
+    { index:4 ,text: 'To Stay', colSpan: 2, rowSpan: 1, href: '/chat'  },
+    { index:5 ,text: 'Pricing', colSpan: 1, rowSpan: 2, href: '/chat'  },
+    { index:6 ,text: 'Best Packages', colSpan: 1, rowSpan: 1, href: '/chat'  },
+    { index:7 ,text: 'Travelling', colSpan: 1, rowSpan: 1, href: '/chat'  },
+    { index:8 ,text: 'Free Guide', colSpan: 1, rowSpan: 1 , href: '/chat' },
+    { index:9 ,text: 'About Us', colSpan: 1, rowSpan: 1, href: '/chat'  },
+  ];
+
+  const GridItem = ({ index , text, colSpan, rowSpan , href}: {index: number ; text: string; colSpan: number; rowSpan: number; href: string}) => {
+    return (
+      <motion.button
+        key={index}
+        variants={fadeInAnimation}
+        initial="initial"
+        whileInView='animate'
+        viewport={{once:true}}
+        custom={index}
+        whileHover={{scale:1.1 , transition:{duration:0.1}}}
+        
+
+      
+        className={`item rounded-2xl bg-green-200 flex items-center justify-center h-full text-xl font-bold p-10 shadow-xl
+         ${ index === 2 ? 'col-span-2 row-span-1' : '' }
+         ${ index === 4 ? 'col-span-2 row-span-1' : '' }
+         ${ index === 5 ? 'col-span-1 row-span-2' : '' }
+         ${ index === 2 ? 'col-span-2 row-span-1' : '' }
+         ${ index === 2 ? 'col-span-2 row-span-1' : '' }
+         ${ index === 2 ? 'col-span-2 row-span-1' : '' }
+        }`}
+      >
+        <Link href={href}>{text}</Link>
+      </motion.button>
+    );
+  };
+  const fadeInAnimation = {
+    initial: {
+      opacity: 0,
+      y: 100,
+      scale: 0.3
+    },
+    animate: (index:number) => ({
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        delay: index * 0.1,
+        type: 'spring',
+        damping: 10,
+        stiffness: 50,
+        duration: 1
+      }
+    })
+
+  }
+
   return (
-    <main
-      className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
-    >
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">pages/index.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <main>
+      <div
+          className="background-image animated-gradient"
+            style={{
+              // backgroundImage: 'url("/flat.avif")', // 
+              backgroundSize: 'cover sm:fetch',
+              backgroundRepeat: 'no-repeat',
+              height: '100%', // Set height as needed
+              
+            }}
           >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
 
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700/10 after:dark:from-sky-900 after:dark:via-[#0141ff]/40 before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+          <header className="p-4 shadow-xl bg-green-400 bg-opacity-30">
+            <div className="container mx-auto">
+              <div className="flex items-center justify-between rounded-xl">
+                <div className="text-2xl px-8 font-bold">Your Logo</div>
 
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
+                <nav className="space-x-4 text-white px-8">
+                  <a href="#" className="hover:underline">Home</a>
+                  <a href="#" className="hover:underline">About</a>
+                  <a href="#" className="hover:underline">Services</a>
+                  <a href="#" className="hover:underline">Contact</a>
+                </nav>
+              </div>
+            </div>
+          </header>
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
+          <div className="flex flex-col sm:flex-row">
+            <div className="w-full sm:w-1/2 p-4 px-3">
+              <div className='pt-20  px-8'>
+                <h1 className="text-5xl p-4 font-bold">Welcoe to the <span className=" text-green-100 stroke-slate-800">World's</span> </h1>
+                <h1 className='text-8xl pl-4 font-bold'> <span className=' text-green-100 stroke-slate-800'>Cutest </span> Island</h1>
+              </div>
+              <p className=" pt-14 px-8 text-black max-w font-bold">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur explicabo incidunt quos sed ratione ipsum voluptatibus sunt tempore eaque. Numquam nihil eligendi, necessitatibus minus neque, exercitationem nemo maiores iusto ducimus ad blanditiis facere illum ex enim? Dolorem a odio voluptas praesentium voluptatibus possimus, ut, minima culpa facere nemo modi aliquid?
+              </p>
+              <div className=" space-x-5 pt-16 px-16 ">
+                <motion.button className="bg-green-400 rounded-full p-5 px-8 font-bold" whileHover={{scale:1.3}} transition={{type:spring}}> Log In </motion.button>
+                <motion.button className="bg-purple-400 rounded-full p-5 px-8 font-bold"whileHover={{scale:1.3}} transition={{type:spring}}> Sign Up </motion.button>
+              </div>
+            </div>   
+            {/* for_button py-0 pt-20 sm:pt-4 sm:px-16 space-y-2 sm:space-y-0 sm:space-x-6 flex flex-col sm:flex-row */}
+            <div className="w-full sm:w-1/2 p-4">
+              <div className="bg-opacity-30 content-center text-center justify-center pt-4">
+                <div>
+                  {/* Toggle button */}
+                  <motion.button onClick={handleToggleClick} className=" bg-transparent text-black text-3xl font-extrabold rounded-2 pybg-2 px-4 " whileHover={{scale:2}} transition={{type:"spring" , stiffness:200}} whileTap={{translateX:10}}>
+                    {isFirstDivVisible ? 'Get Started' : ''}
+                  </motion.button>
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Discover and deploy boilerplate example Next.js&nbsp;projects.
-          </p>
-        </a>
+                  {/* Render content based on visibility state */}
+                  {isFirstDivVisible ? (
+                    <div>
+                      <Lottie animationData={animationData} />
+                    </div>
 
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
+                  ) : (
+
+                    <div className=''>
+                      <div className='right rounded grid grid-cols-4 h-3/4 py-10 p-4 gap-2'>
+                        {gridData.map((item, index) => (
+                          <GridItem key={index} {...item}
+                          />
+                        ))}
+                      </div>
+                      <motion.p className='p-4 text-black rounded-2xl max-w font-bold' 
+                      variants={fadeInAnimation}
+                      initial="initial"
+                      whileInView='animate'
+                      viewport={{once:true}}>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam, sint optio perspiciatis quod quae id explicabo. Ipsum veniam autem quos ipsam molestiae natus vitae exercitationem optio placeat saepe eaque dolore repellendus pariatur debitis quasi, quas, odio aut. Blanditiis rem molestias illum dolore cum aliquam porro magnam nisi aliquid, consequuntur accusamus.
+                      </motion.p>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <footer className=" text-white bg-slate-500 bg-opacity-50 justify-center">
+            <div className="container mx-auto">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {/* About Us Section */}
+                <div className='justify-between content-center text-center'>
+                  <h2 className="text-2xl font-bold mb-4">About Us</h2>
+                  <p className="text-gray-300">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                </div>
+
+                {/* Contact Information */}
+                <div className='justify-between content-center text-center'>
+                  <h2 className="text-2xl font-bold mb-4">Contact Us</h2>
+                  <p className="text-gray-300">
+                    Email: contact@example.com<br />
+                    Phone: +1 234 567 890<br />
+                    Address: 123 Main St, Cityville
+                  </p>
+                </div>
+
+                {/* Purpose of the Web Application */}
+                <div className='justify-between content-center text-center'>
+                  <h2 className="text-2xl font-bold mb-4">Our Purpose</h2>
+                  <p className="text-gray-300">We aim to provide [describe the purpose of your web application] to [target audience]. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                </div>
+              </div>
+            </div>
+          </footer>
       </div>
     </main>
   )
